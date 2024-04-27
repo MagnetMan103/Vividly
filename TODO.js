@@ -5,6 +5,6 @@
 //
 //
 // IAN TODOS
-// TODO: Add custom colors to project (would like a nice light purple)
+// TODO: Add custom colors to project (would like a nice light purple) --> hexadecimal (#B234FF)
 // TODO: Add custom fonts to project
 // TODO: Make a logo for VIVIDLY
