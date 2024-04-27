@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 export default function Header() {
     return(
-        <View style={{width: Dimensions.get('window').width,
-            height: 75, backgroundColor: 'green', alignItems: 'center',
-            justifyContent: 'center', borderTopWidth: 5, borderColor: 'black'}}>
-            <Text style={{fontSize: 40, fontWeight: "bold", color: 'lightgreen'}}>
+        <View style={{
+            height: 70, backgroundColor: 'green', alignItems: 'left', paddingLeft: 50,
+            justifyContent: 'center', borderBottomWidth: 3, borderColor: '#006400'}}>
+            <Text style={{fontSize: 30, fontWeight: "bold", color: 'lightgreen'}}>
                 Vividly</Text>
         </View>
     )

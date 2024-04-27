@@ -1,17 +1,22 @@
-import {Pressable, Text, View, Modal, TextInput} from "react-native";
+import {Pressable, Text, View, Modal, TextInput, Button} from "react-native";
 import React, {useState} from 'react';
-import Card from "./Card";
+import DateChoice from "./DateChoice";
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 export default function NewButton(props){
     const [modalVisible, setModalVisible] = useState(false);
     const [title, onChangeText] =useState("")
     const [description, onChangeDescription] =useState("")
+    const [date, setDate] =useState(new Date())
+    const [dateShown, setDateShown] = useState(false)
 
 
     const createEvent = () => {
-        props.hookEvent(title, description)
+        props.hookEvent(title, description, date.toLocaleDateString())
         setModalVisible(false)
         onChangeText("")
         onChangeDescription("")
+        setDate(new Date())
     }
 
     const closeTrigger = () => {
@@ -19,11 +24,17 @@ export default function NewButton(props){
         onChangeText("")
         onChangeDescription("")
     }
+    const onChangeDate= (event, selectedDate) => {
+        const currentDate = selectedDate;
+        setDateShown(false);
+        setDate(currentDate);
+    };
     return(
         <View style={{alignItems: 'center'}}>
         <Pressable style={{borderWidth: 3, borderColor: 'gray', width: 200,
             justifyContent: 'center', alignItems: 'center', borderRadius: 100,
-        backgroundColor: 'lightgray', height: 50, marginTop: 20, marginBottom: 20}}
+        backgroundColor: 'lightgray', height: 50, marginTop: 20, marginBottom: 20,
+        position: 'absolute'}}
                    onPress={() => setModalVisible(true)}>
             <Text style={{fontSize: 30, fontWeight: "bold", color: 'gray'}}>
                 Add Event</Text>
@@ -51,6 +62,21 @@ export default function NewButton(props){
                        value={description}
 
             />
+            <Pressable onPress={() => setDateShown(true)}>
+                <Text style={{fontSize:50, backgroundColor: 'lightgray'}}>Date:</Text>
+            <Text style={{fontSize: 30, backgroundColor: 'lightgray', borderBottomWidth: 2, borderColor: 'gray'
+            }}>{date.toLocaleDateString()}</Text>
+            </Pressable>
+            {dateShown && (
+                <DateTimePicker
+                    testID="dateTimePicker"
+                    value={date}
+                    mode={'date'}
+                    is24Hour={true}
+                    display={"spinner"}
+                    onChange={onChangeDate}
+                />
+            )}
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end',
                 justifyContent: 'center', columnGap: 50, marginBottom: 20,
             backgroundColor: 'white'}}>
@@ -73,3 +99,4 @@ export default function NewButton(props){
 
     )
 }
+
