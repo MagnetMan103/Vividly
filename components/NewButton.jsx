@@ -46,8 +46,7 @@ export default function NewButton(props){
         <View style={{alignItems: 'center'}}>
         <Pressable style={{borderWidth: 3, borderColor: 'gray', width: 200,
             justifyContent: 'center', alignItems: 'center', borderRadius: 100,
-        backgroundColor: 'lightgray', height: 50, marginTop: 20, marginBottom: 20,
-        position: 'absolute'}}
+        backgroundColor: 'lightgray', height: 50, marginTop: 20, marginBottom: 20}}
                    onPress={() => setModalVisible(true)}>
             <Text style={{fontSize: 30, fontWeight: "bold", color: 'gray'}}>
                 Add Event</Text>

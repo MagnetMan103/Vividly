@@ -1,6 +1,8 @@
-import {FlatList, View} from "react-native";
+import {FlatList, View, ScrollView} from "react-native";
 import Card from "../components/Card";
 import NewButton from "../components/NewButton";
+import VisitStoryButton from "../components/VisitStoryButton";
+import NavigationBar from 'react-native-navbar';
 import {useState} from "react";
 import {useEffect} from "react";
 export default function HomeScreen({navigation}) {
@@ -47,12 +49,15 @@ export default function HomeScreen({navigation}) {
 
     return (
         <View style={{backgroundColor: 'lightblue', flex: 1}}>
-            <View>
+            <View style={{flex:1}}>
 
                 <FlatList data={events} renderItem={({item}) =>
                     <Card title={item.title} description={item.description} date={item.time}
                           id={item.id}/>}/>
-                <NewButton hookEvent={addEvent}/>
+                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: "#E0B0FF", borderTopWidth: 2}}>
+                    <VisitStoryButton navigation={navigation}/>
+                    <NewButton hookEvent={addEvent}/>
+                </View>
             </View>
         </View>
 
