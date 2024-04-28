@@ -14,7 +14,6 @@ export default function GPTScreen() {
         "given information for alzheimer's patients. Give a creative story told in 2nd person. " +
         "Use months instead of dates."
     useEffect(() => {
-        Speech.speak('Hello World!')
         fetch('http://34.145.192.60/api/events/')
             .then((response) => response.json())
             .then((json) => {

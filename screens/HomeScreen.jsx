@@ -1,4 +1,4 @@
-import {FlatList, View, ScrollView} from "react-native";
+import {FlatList, View, ScrollView, Text} from "react-native";
 import Card from "../components/Card";
 import NewButton from "../components/NewButton";
 import VisitStoryButton from "../components/VisitStoryButton";
@@ -54,9 +54,21 @@ export default function HomeScreen({navigation}) {
                 <FlatList data={events} renderItem={({item}) =>
                     <Card title={item.title} description={item.description} date={item.time}
                           id={item.id}/>}/>
-                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: "#E0B0FF", borderTopWidth: 2}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: "#98FB98", borderTopWidth: 2,
+
+                }}>
+                    <View style={{}}>
                     <VisitStoryButton navigation={navigation}/>
+                    </View>
+                    <View style={{flex: 3, alignItems: 'flex-end', marginRight: 10}}>
+                        <Text style={{
+                            fontSize: 40, fontWeight: 'bold', color:'#023020'
+                        }}>Vividly</Text>
+                    </View>
+
+                    <View style={{flex: 2, alignItems: 'flex-end', marginRight: 10}}>
                     <NewButton hookEvent={addEvent}/>
+                    </View>
                 </View>
             </View>
         </View>

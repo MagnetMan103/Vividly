@@ -1,4 +1,4 @@
-import {Pressable, Text, View, Modal, TextInput, Button, Image, FlatList} from "react-native";
+import {Pressable, Text, View, Modal, TextInput, Button, Image, FlatList, ScrollView, Dimensions} from "react-native";
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ImageSelector from "./ImageSelector";
@@ -44,12 +44,13 @@ export default function NewButton(props){
     };
     return(
         <View style={{alignItems: 'center'}}>
-        <Pressable style={{borderWidth: 3, borderColor: 'gray', width: 200,
+        <Pressable style={{borderWidth: 2, borderColor: 'black',
             justifyContent: 'center', alignItems: 'center', borderRadius: 100,
-        backgroundColor: 'lightgray', height: 50, marginTop: 20, marginBottom: 20}}
+        backgroundColor: '#ECFFDC', marginRight: 20}}
                    onPress={() => setModalVisible(true)}>
-            <Text style={{fontSize: 30, fontWeight: "bold", color: 'gray'}}>
-                Add Event</Text>
+            <Text style={{fontSize: 25, fontWeight: "bold", color: '#023020',
+                padding: 5}}>
+                  Add</Text>
         </Pressable>
 
 
@@ -59,6 +60,8 @@ export default function NewButton(props){
             visible={modalVisible}
 
         >
+            <View style={{flex:9}}>
+            <ScrollView>
             <Text style={{backgroundColor: 'lightgray', fontSize: 50}}>Event Name:</Text>
             <TextInput style={{backgroundColor: 'lightgray', borderBottomWidth: 2, borderColor: 'gray', fontSize: 25}}
                        placeholder="Type Here"
@@ -90,10 +93,12 @@ export default function NewButton(props){
                     onChange={onChangeDate}
                 />
             )}
+
             <ImageSelector setImage={addImage}/>
             <FlatList horizontal={true}
                       data={images} renderItem={({item}) => <Image source={{ uri: item }} style={{ width: 75, height: 75 }}/>}/>
-
+            </ScrollView>
+            </View>
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end',
                 justifyContent: 'center', columnGap: 50, marginBottom: 20,
             backgroundColor: 'white'}}>
@@ -110,6 +115,7 @@ export default function NewButton(props){
                 <Text style={{fontWeight: 'bold', fontSize: 20}}>Cancel</Text>
             </Pressable>
             </View>
+
         </Modal>
         </View>
 

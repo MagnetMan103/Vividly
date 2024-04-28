@@ -6,10 +6,10 @@ export default function VisitStoryButton(props) {
     const navigation = useNavigation()
     return (
         <Pressable>
-            <Text style={{fontSize: 20, color: 'white', backgroundColor: 'black',
-                padding: 10, margin: 10, borderRadius: 10}}
+            <Text style={{fontSize: 25, color: '#023020', backgroundColor: '#ECFFDC', borderWidth: 2,
+                padding: 5, marginLeft: 20, borderRadius: 100, fontWeight: 'bold'}}
                   onPress={() => navigation.navigate('GPT')}>
-                Visit Story
+                Story
             </Text>
         </Pressable>
     )
