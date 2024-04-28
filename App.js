@@ -32,7 +32,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
-                headerShown: true
+                headerShown: true,
             }}>
                 <Stack.Screen name="Home" component={HomeScreen}/>
                 <Stack.Screen name={"Event"} component={EventScreen}/>

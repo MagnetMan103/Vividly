@@ -1,7 +1,8 @@
-import {Pressable, Text, View, Modal, TextInput, Button} from "react-native";
+import {Pressable, Text, View, Modal, TextInput, Button, Image, FlatList} from "react-native";
 import React, {useState} from 'react';
-import DateChoice from "./DateChoice";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import ImageSelector from "./ImageSelector";
+
 
 export default function NewButton(props){
     const [modalVisible, setModalVisible] = useState(false);
@@ -9,20 +10,32 @@ export default function NewButton(props){
     const [description, onChangeDescription] =useState("")
     const [date, setDate] =useState(new Date())
     const [dateShown, setDateShown] = useState(false)
+    const [images, setImages] = useState([])
 
 
     const createEvent = () => {
+        if (title === "" || description === "") {
+            alert("Please fill out title and description")
+            return
+        }
         props.hookEvent(title, description, date.toLocaleDateString())
         setModalVisible(false)
         onChangeText("")
         onChangeDescription("")
         setDate(new Date())
+        setImages([])
+    }
+
+    const addImage = (image) => {
+        setImages([...images, image])
     }
 
     const closeTrigger = () => {
         setModalVisible(false)
         onChangeText("")
         onChangeDescription("")
+        setDate(new Date())
+        setImages([])
     }
     const onChangeDate= (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -77,6 +90,10 @@ export default function NewButton(props){
                     onChange={onChangeDate}
                 />
             )}
+            <ImageSelector setImage={addImage}/>
+            <FlatList horizontal={true}
+                      data={images} renderItem={({item}) => <Image source={{ uri: item }} style={{ width: 75, height: 75 }}/>}/>
+
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end',
                 justifyContent: 'center', columnGap: 50, marginBottom: 20,
             backgroundColor: 'white'}}>
