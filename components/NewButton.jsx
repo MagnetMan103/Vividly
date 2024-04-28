@@ -55,8 +55,9 @@ export default function NewButton(props){
 
         <Modal
             animationType="slide"
-            transparent={true}
+            transparent={false}
             visible={modalVisible}
+
         >
             <Text style={{backgroundColor: 'lightgray', fontSize: 50}}>Event Name:</Text>
             <TextInput style={{backgroundColor: 'lightgray', borderBottomWidth: 2, borderColor: 'gray', fontSize: 25}}

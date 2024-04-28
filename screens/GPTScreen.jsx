@@ -58,18 +58,24 @@ export default function GPTScreen() {
             .catch(error => console.error(error));
     }
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#B9D9EB'}}>
             <Pressable onPress={callGPT} disabled={isPressable}
-            style={{backgroundColor:'gray', opacity:opacit}}>
-                <Text>Generate Story</Text>
+            style={{backgroundColor:'#1F75FE', opacity:opacit, marginTop: 10,
+            padding: 10, borderRadius: 100}}>
+                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'
+                }}>Generate Story</Text>
             </Pressable>
             <Pressable onPress={readGPT} disabled={!isPressable}
-                       style={{backgroundColor:'gray', opacity:opacitw}}>
-                <Text>Read Text</Text>
+                       style={{backgroundColor:'#1F75FE', opacity:opacitw,
+                           padding: 10, borderRadius: 100}}>
+                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+                    Read Text</Text>
             </Pressable>
             <ScrollView>
-                <Text style={{fontSize: 30, fontWeight: 'bold'}}>Your Story</Text>
-                <Text style={{fontSize: 20}}>{responsed}</Text>
+                <Text style={{fontSize: 30, fontWeight: 'bold', paddingLeft: 3, paddingRight: 3
+                }}>Your Story</Text>
+                <Text style={{fontSize: 20, paddingLeft: 3, paddingRight: 3}}>
+                    {responsed}</Text>
             </ScrollView>
 
         </View>

@@ -1,7 +1,9 @@
-import {Text, View, Image, FlatList, Pressable} from "react-native";
+import {Text, View, Image, FlatList, Pressable, Dimensions} from "react-native";
 import {useEffect} from "react";
 import {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
+import * as Speech from 'expo-speech';
+
 export default function EventScreen({route}) {
     const [event, setEvent] = useState('')
     const [images, setImages] = useState([])
@@ -42,12 +44,23 @@ export default function EventScreen({route}) {
         alert('no images')
         return (
             <View style={{flex: 1}}>
-                <Text style={{fontSize: 30, fontWeight: 'bold'}}>{event.title}</Text>
-                <Text style={{fontSize: 20}}>{event.time}</Text>
+                <View style={{flex: 1, flexDirection: 'row', backgroundColor:'blue', alignItems: 'center'}}>
+                    <Text style={{flex: 1, fontWeight: "bold", fontSize: 30
+                        , color: 'white', marginLeft: 10}}>
+                        {event.title}</Text>
+                    <View style={{alignItems: "flex-end", justifyContent: "center"}}>
+                        <Text style={{fontWeight: "bold", fontSize: 15, marginRight: 10
+                            , color: 'white'}}>{event.time}</Text>
+                    </View>
+                </View>
+                <Pressable onPress={() => Speech.speak(event.description)}>
+                    <Text style={{fontSize: 30, fontWeight: "bold", color: '#B9D9EB', textAlign: 'center', backgroundColor: '#318CE7'}}>
+                        Read Description</Text>
+                </Pressable>
                 <Text style={{fontSize: 30}}>{event.description}</Text>
-                <Pressable style={{borderWidth: 3, borderColor: 'gray', backgroundColor: 'red'}}
+                <Pressable
                 onPress={deleteMemory}>
-                    <Text style={{fontSize: 30, fontWeight: "bold"}}>
+                    <Text style={{fontSize: 30, fontWeight: "bold", borderWidth: 3, borderColor: 'gray', backgroundColor: 'blue', alignItems: 'center'}}>
                         Delete Memory</Text>
                 </Pressable>
             </View>
@@ -55,13 +68,28 @@ export default function EventScreen({route}) {
     }
     return (
         <View style={{flex: 1}}>
-            <Text style={{fontSize: 30, fontWeight: 'bold'}}>{event.title}</Text>
-            <Text style={{fontSize: 20}}>{event.time}</Text>
-            <Text style={{fontSize: 30}}>{event.description}</Text>
+            <View style={{flex: 1, flexDirection: 'row', backgroundColor:'blue', alignItems: 'center'}}>
+                <Text style={{flex: 1, fontWeight: "bold", fontSize: 30
+                    , color: 'white', marginLeft: 10}}>
+                    {event.title}</Text>
+                <View style={{alignItems: "flex-end", justifyContent: "center"}}>
+                    <Text style={{fontWeight: "bold", fontSize: 15, marginRight: 10
+                        , color: 'white'}}>{event.time}</Text>
+                </View>
+            </View>
+            <Pressable onPress={() => Speech.speak(event.description)}>
+                <Text style={{fontSize: 30, fontWeight: "bold", color: '#B9D9EB', textAlign: 'center',
+                    backgroundColor: '#318CE7'}}>
+                    Read Description</Text>
+            </Pressable>
+            <View style={{flex: 8}}>
+            <Text style={{fontSize: 30, marginLeft: 10, borderBottomWidth: 2
+            }}>{event.description}</Text>
             <FlatList vertical={true}
                       data={images} renderItem={({item}) =>
-                <Image source={{ uri: item }} style={{ width: 150, height: 150 }}/>}/>
-            <Pressable style={{borderWidth: 3, borderColor: 'gray', backgroundColor: 'red'}}
+                <Image source={{ uri: item }} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').width }}/>}/>
+            </View>
+            <Pressable style={{borderWidth: 3, borderColor: 'gray', backgroundColor: 'red', alignItems: 'center'}}
             onPress={deleteMemory}>
                 <Text style={{fontSize: 30, fontWeight: "bold"}}>
                     Delete Memory</Text>

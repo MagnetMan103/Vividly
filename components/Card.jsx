@@ -50,8 +50,9 @@ export default function Card(props) {
                 </View>
             </View>
             <View style={{alignItems: "center", flex:1}}>
-            <Text style={{fontSize: 25}}>{props.description}</Text>
-                <Image source={{ uri: image }} style={{ width: 150, height: 150 }}/>
+            <Text style={{fontSize: 25, color:'black'}}>{props.description}</Text>
+                <Image source={{ uri: image }} style={{ width: Dimensions.get('window').width
+                    , height: Dimensions.get('window').width }}/>
             <VisitButton id={props.id} navigation={props.navigation}/>
             </View>
         </View>
