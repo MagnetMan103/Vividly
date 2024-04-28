@@ -7,9 +7,10 @@ export default function ImageSelector(props) {
             allowsEditing: true,
             aspect: [3, 3],
             quality: 1,
+            base64: true
         });
         if (!result.canceled) {
-            props.setImage(result.assets[0].uri)
+            props.setImage('data:image/png;base64,'+result.assets[0].base64)
         }
 
     };

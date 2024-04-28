@@ -5,14 +5,14 @@ import {useState} from "react";
 import {useEffect} from "react";
 export default function HomeScreen({navigation}) {
     const [events, setEvents] = useState([]);
-    const addEvent = (title, description, date) => {
+    const addEvent = (title, description, date, images) => {
         console.log('hi');
 
         const eventData = {
             title: title,
             time: date,
             description: description,
-            images: ""
+            images: images
         };
 
         fetch('http://34.145.192.60/api/events/', {

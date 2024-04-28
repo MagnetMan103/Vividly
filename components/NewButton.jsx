@@ -18,7 +18,7 @@ export default function NewButton(props){
             alert("Please fill out title and description")
             return
         }
-        props.hookEvent(title, description, date.toLocaleDateString())
+        props.hookEvent(title, description, date.toLocaleDateString(), ImageList(images))
         setModalVisible(false)
         onChangeText("")
         onChangeDescription("")
@@ -117,3 +117,11 @@ export default function NewButton(props){
     )
 }
 
+function ImageList(images) {
+    let imageString = ''
+    for (let i = 0; i < images.length; i++) {
+        imageString += images[i] + ' '
+    }
+    imageString = imageString.slice(0, -1);
+    return imageString
+}
