@@ -1,6 +1,7 @@
 import {Pressable, Text, View, Modal, TextInput, Button, Image, FlatList, ScrollView, Dimensions} from "react-native";
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePickerCom from "./DatePickerCom";
 import ImageSelector from "./ImageSelector";
 
 
@@ -38,17 +39,18 @@ export default function NewButton(props){
         setImages([])
     }
     const onChangeDate= (event, selectedDate) => {
+        console.log('hi')
         const currentDate = selectedDate;
-        setDateShown(false);
+        setDateShown(false)
         setDate(currentDate);
     };
     return(
         <View style={{alignItems: 'center'}}>
-        <Pressable style={{borderWidth: 2, borderColor: 'black',
+        <Pressable style={{borderColor: 'black', padding: 3,
             justifyContent: 'center', alignItems: 'center', borderRadius: 100,
-        backgroundColor: '#ECFFDC', marginRight: 20}}
+        backgroundColor: '#00563B', marginRight: 20}}
                    onPress={() => setModalVisible(true)}>
-            <Text style={{fontSize: 25, fontWeight: "bold", color: '#023020',
+            <Text style={{fontSize: 25, fontWeight: "bold", color: 'white',
                 padding: 5}}>
                   Add</Text>
         </Pressable>
@@ -78,21 +80,7 @@ export default function NewButton(props){
                        value={description}
 
             />
-            <Pressable onPress={() => setDateShown(true)}>
-                <Text style={{fontSize:50, backgroundColor: 'lightgray'}}>Date:</Text>
-            <Text style={{fontSize: 30, backgroundColor: 'lightgray', borderBottomWidth: 2, borderColor: 'gray'
-            }}>{date.toLocaleDateString()}</Text>
-            </Pressable>
-            {dateShown && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    mode={'date'}
-                    is24Hour={true}
-                    display={"spinner"}
-                    onChange={onChangeDate}
-                />
-            )}
+                <DatePickerCom/>
 
             <ImageSelector setImage={addImage}/>
             <FlatList horizontal={true}
@@ -102,17 +90,17 @@ export default function NewButton(props){
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end',
                 justifyContent: 'center', columnGap: 50, marginBottom: 20,
             backgroundColor: 'white'}}>
-            <Pressable style={{height: 70, width: 70, borderRadius: 100,
+            <Pressable style={{height: 50, width:70, borderRadius: 20,
                 justifyContent: 'center', alignItems: 'center',
-                backgroundColor: 'lightgreen', borderWidth: 1}}
+                backgroundColor: '#00563B'}}
                        onPress={createEvent}>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>Create</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20, color:'white'}}>Create</Text>
             </Pressable>
-            <Pressable style={{height: 70, width: 70, borderRadius: 100,
+            <Pressable style={{height: 50, width: 70, borderRadius: 20,
                 justifyContent: 'center', alignItems: 'center',
-                backgroundColor: 'red', borderWidth: 1}}
+                backgroundColor: '#A52A2A'}}
                        onPress={closeTrigger}>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>Cancel</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20, color:'white'}}>Cancel</Text>
             </Pressable>
             </View>
 

@@ -27,6 +27,9 @@ export default function GPTScreen() {
     const readGPT = () => {
         Speech.speak(responsed)
     }
+    const stopGPT = () => {
+        Speech.stop()
+    }
     const callGPT = () => {
         console.log('will send')
         console.log(user_input)
@@ -57,19 +60,27 @@ export default function GPTScreen() {
             .catch(error => console.error(error));
     }
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#B9D9EB'}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ACE1AF'}}>
             <Pressable onPress={callGPT} disabled={isPressable}
-            style={{backgroundColor:'#1F75FE', opacity:opacit, marginTop: 10,
-            padding: 10, borderRadius: 100}}>
+            style={{backgroundColor:'#00563B', opacity:opacit, marginTop: 10,
+            padding: 10, borderRadius: 100, borderWidth: 0, borderColor: '#041E42'}}>
                 <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'
                 }}>Generate Story</Text>
             </Pressable>
+            <View style={{flexDirection: 'row', columnGap: 50}}>
             <Pressable onPress={readGPT} disabled={!isPressable}
-                       style={{backgroundColor:'#1F75FE', opacity:opacitw,
-                           padding: 10, borderRadius: 100}}>
-                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+                       style={{backgroundColor:'#00563B', opacity:opacitw,
+                           padding: 10, borderRadius: 100, borderWidth: 0, borderColor: '#041E42'}}>
+                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold', }}>
                     Read Text</Text>
             </Pressable>
+            <Pressable onPress={stopGPT} disabled={!isPressable}
+                       style={{backgroundColor:'#00563B', opacity:opacitw, borderWidth: 0, borderColor: '#041E42',
+                           padding: 10, borderRadius: 100}}>
+                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+                    Stop</Text>
+            </Pressable>
+            </View>
             <ScrollView>
                 <Text style={{fontSize: 30, fontWeight: 'bold', paddingLeft: 3, paddingRight: 3
                 }}>Your Story</Text>

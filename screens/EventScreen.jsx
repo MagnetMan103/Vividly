@@ -1,4 +1,4 @@
-import {Text, View, Image, FlatList, Pressable, Dimensions} from "react-native";
+import {Text, View, Image, FlatList, Pressable, Dimensions, ScrollView} from "react-native";
 import {useEffect} from "react";
 import {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
@@ -8,6 +8,8 @@ export default function EventScreen({route}) {
     const [event, setEvent] = useState('')
     const [images, setImages] = useState([])
     const navigation = useNavigation()
+    const [isOn, setOn] = useState(true)
+    const [btnText, setBtnText] = useState('Read Aloud')
     useEffect(() => {
         fetch(`http://34.145.192.60/api/events/${route.params.id}/`)
             .then((response) => response.json())
@@ -21,6 +23,17 @@ export default function EventScreen({route}) {
             .catch(error => console.error(error));
 
     }, []);
+    const speakAloud = () => {
+        if (isOn) {
+            Speech.speak(event.description)
+            setBtnText('Stop')
+        } else {
+            Speech.stop()
+            setBtnText('Read Aloud')
+        }
+
+        setOn(!isOn)
+    }
     const deleteMemory = () => {
         fetch(`http://34.145.192.60/api/events/${event.id}/`, {
             method: 'DELETE',
@@ -53,9 +66,10 @@ export default function EventScreen({route}) {
                             , color: 'white'}}>{event.time}</Text>
                     </View>
                 </View>
-                <Pressable onPress={() => Speech.speak(event.description)}>
-                    <Text style={{fontSize: 30, fontWeight: "bold", color: '#B9D9EB', textAlign: 'center', backgroundColor: '#318CE7'}}>
-                        Read Description</Text>
+                <Pressable onPress={speakAloud}>
+                    <Text style={{fontSize: 30, fontWeight: "bold", color: 'white', textAlign: 'center',
+                        backgroundColor: '#32CD32'}}>
+                        {btnText}</Text>
                 </Pressable>
                 <Text style={{fontSize: 30}}>{event.description}</Text>
                 <Pressable
@@ -66,9 +80,12 @@ export default function EventScreen({route}) {
             </View>
         )
     }
+    // TODO fix condition rendering for no image case
     return (
+
         <View style={{flex: 1}}>
-            <View style={{flex: 1, flexDirection: 'row', backgroundColor:'blue', alignItems: 'center'}}>
+            <ScrollView>
+            <View style={{flex: 1, flexDirection: 'row', backgroundColor:'#228B22', alignItems: 'center'}}>
                 <Text style={{flex: 1, fontWeight: "bold", fontSize: 30
                     , color: 'white', marginLeft: 10}}>
                     {event.title}</Text>
@@ -77,18 +94,29 @@ export default function EventScreen({route}) {
                         , color: 'white'}}>{event.time}</Text>
                 </View>
             </View>
-            <Pressable onPress={() => Speech.speak(event.description)}>
-                <Text style={{fontSize: 30, fontWeight: "bold", color: '#B9D9EB', textAlign: 'center',
-                    backgroundColor: '#318CE7'}}>
-                    Read Description</Text>
-            </Pressable>
-            <View style={{flex: 8}}>
-            <Text style={{fontSize: 30, marginLeft: 10, borderBottomWidth: 2
-            }}>{event.description}</Text>
+
+
+            <View style={{flex: 8, backgroundColor: 'white'}}>
+                <View>
+
             <FlatList vertical={true}
                       data={images} renderItem={({item}) =>
                 <Image source={{ uri: item }} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').width }}/>}/>
+                </View>
+                <Pressable onPress={speakAloud}>
+                    <Text style={{fontSize: 30, fontWeight: "bold", color: 'white', textAlign: 'center',
+                        backgroundColor: '#32CD32'}}>
+                        {btnText}</Text>
+                </Pressable>
+
+                <Text style={{fontSize: 30, marginLeft: 10,
+                    fontFamily: 'serif'
+                }}>{event.description}</Text>
+
             </View>
+            </ScrollView>
+
+
             <Pressable style={{borderWidth: 3, borderColor: 'gray', backgroundColor: 'red', alignItems: 'center'}}
             onPress={deleteMemory}>
                 <Text style={{fontSize: 30, fontWeight: "bold"}}>

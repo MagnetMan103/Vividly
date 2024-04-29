@@ -16,7 +16,7 @@ export default function ImageSelector(props) {
     };
     return (
         <Pressable onPress={pickImage} >
-            <Text style={{fontSize:50, backgroundColor: 'blue', color: 'white', textAlign: 'center',
+            <Text style={{fontSize:50, backgroundColor: '#00563B', color: 'white', textAlign: 'center',
                 borderBottomWidth: 3, borderColor: 'gray'}}>
                 Add Images
             </Text>

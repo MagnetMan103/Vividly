@@ -18,7 +18,7 @@ export default function Card(props) {
     if (image === "") {
         return (
             <View style={{width: Dimensions.get('window').width ,
-                paddingBottom: 5, backgroundColor: 'lightblue',
+                paddingBottom: 5, backgroundColor: 'white',
             }}>
                 <View style={{flex: 1, flexDirection: 'row', backgroundColor:'blue'}}>
                     <Text style={{flex: 1, fontWeight: "bold", fontSize: 30
@@ -38,11 +38,11 @@ export default function Card(props) {
     }
     return(
         <View style={{width: Dimensions.get('window').width ,
-        paddingBottom: 5, backgroundColor: 'lightblue',
+        paddingBottom: 5, backgroundColor: 'white',
              }}>
-            <View style={{flex: 1, flexDirection: 'row', backgroundColor:'blue'}}>
+            <View style={{flex: 1, flexDirection: 'row', backgroundColor:'#1CAC78'}}>
             <Text style={{flex: 1, fontWeight: "bold", fontSize: 30
-            , color: 'white', marginLeft: 10}}>
+            , color: 'white', marginLeft: 10, fontFamily: 'monospace'}}>
                 {props.title}</Text>
                 <View style={{alignItems: "flex-end", justifyContent: "center"}}>
             <Text style={{fontWeight: "bold", fontSize: 15, marginRight: 10
@@ -50,9 +50,10 @@ export default function Card(props) {
                 </View>
             </View>
             <View style={{alignItems: "center", flex:1}}>
-            <Text style={{fontSize: 25, color:'black'}}>{props.description}</Text>
-                <Image source={{ uri: image }} style={{ width: Dimensions.get('window').width
-                    , height: Dimensions.get('window').width }}/>
+
+                <Image source={{ uri: image }} style={{ width: Dimensions.get('window').width - 20
+                    , height: Dimensions.get('window').width - 20, marginTop: 10, borderRadius: 10}}/>
+                <Text style={{fontSize: 25, color:'black', fontFamily: 'serif', padding: 4}}>{props.description}</Text>
             <VisitButton id={props.id} navigation={props.navigation}/>
             </View>
         </View>

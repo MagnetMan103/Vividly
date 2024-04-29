@@ -10,6 +10,7 @@ import HomeScreen from "./screens/HomeScreen";
 import EventScreen from "./screens/EventScreen";
 import createNativeBottomTabNavigator from "@react-navigation/bottom-tabs/src/navigators/createBottomTabNavigator";
 import GPTScreen from "./screens/GPTScreen";
+import {LogBox} from "react-native";
 
 const Stack = createNativeStackNavigator();
 const Tab = createNativeBottomTabNavigator();
@@ -22,6 +23,8 @@ function MyTabs() {
     );
 }
 export default function App() {
+    //code to ignore errors
+    LogBox.ignoreAllLogs()
     return (
         <NavigationContainer>
             <Stack.Navigator>

@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import NewButton from "../components/NewButton";
 import VisitStoryButton from "../components/VisitStoryButton";
 import NavigationBar from 'react-native-navbar';
+import DatePickerCom from "../components/DatePickerCom";
 import {useState} from "react";
 import {useEffect} from "react";
 export default function HomeScreen({navigation}) {
@@ -54,7 +55,7 @@ export default function HomeScreen({navigation}) {
                 <FlatList data={events} renderItem={({item}) =>
                     <Card title={item.title} description={item.description} date={item.time}
                           id={item.id}/>}/>
-                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: "#98FB98", borderTopWidth: 2,
+                <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: "#1CAC78"
 
                 }}>
                     <View style={{}}>
@@ -62,7 +63,7 @@ export default function HomeScreen({navigation}) {
                     </View>
                     <View style={{flex: 3, alignItems: 'flex-end', marginRight: 10}}>
                         <Text style={{
-                            fontSize: 40, fontWeight: 'bold', color:'#023020'
+                            fontSize: 40, fontWeight: 'bold', color:'white'
                         }}>Vividly</Text>
                     </View>
 
