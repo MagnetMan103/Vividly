@@ -1,4 +1,4 @@
-Vividly
+**Vividly**
 
 An app to help people with alzheimers remember important events in their life.
 
